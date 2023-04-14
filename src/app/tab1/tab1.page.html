@@ -15,12 +15,12 @@
   <ion-card id="NongModel" class="ion-text-center">
     <!-- <ion-card-header class="ion-text-center">Ingrese sus datos</ion-card-header> -->
     
-    <ion-input label-placement="floating" fill="solid" label="Email" type="email" placeholder="Ingrese su email"></ion-input>
+    <ion-input label-placement="floating" fill="solid" label="Email" type="email" placeholder="Ingrese su email" #email></ion-input>
     
     
-    <ion-input label-placement="floating" fill="solid" label="Contraseña" type="password" placeholder="Ingrese la contraseña"></ion-input>
+    <ion-input label-placement="floating" fill="solid" label="Contraseña" type="password" placeholder="Ingrese la contraseña" #pass></ion-input>
     
-    <ion-button fill="solid" shape="round" class="ion-text-center">Ingresar</ion-button>
+    <ion-button fill="solid" shape="round" class="ion-text-center" (click)="registerNewUser(email.value,pass.value)">Ingresar</ion-button>
     <!-- <ion-button color="primary" ion-button block (click)="MostrarDatos(nom.value, ape.value)">Mostrar Datos</ion-button> -->    
 
   </ion-card>

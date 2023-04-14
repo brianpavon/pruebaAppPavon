@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { ExploreContainerComponent } from '../explore-container/explore-container.component';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-tab1',
@@ -17,8 +18,19 @@ export class Tab1Page {
   direccion !: string ;
   
 
-  constructor() {
-    //this.mostrar=false;
+  constructor(private auth : AuthService) {
+    
+  }
+
+  async registerNewUser(email:any,pass:any){
+    try {
+      const user = await this.auth.register(email,pass);
+      console.log(user);
+      
+    } catch (error) {
+      console.log(error);
+    }
+    
   }
 
   MostrarDatos(nombre:any, apellido:any){
