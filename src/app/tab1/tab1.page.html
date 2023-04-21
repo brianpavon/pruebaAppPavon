@@ -7,21 +7,30 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <!-- <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Login</ion-title>
-    </ion-toolbar>
-  </ion-header> -->
-  <ion-card id="NongModel" class="ion-text-center">
-    <!-- <ion-card-header class="ion-text-center">Ingrese sus datos</ion-card-header> -->
-    
-    <ion-input label-placement="floating" fill="solid" label="Email" type="email" placeholder="Ingrese su email" #email></ion-input>
-    
-    
-    <ion-input label-placement="floating" fill="solid" label="Contraseña" type="password" placeholder="Ingrese la contraseña" #pass></ion-input>
-    
-    <ion-button fill="solid" shape="round" class="ion-text-center" (click)="registerNewUser(email.value,pass.value)">Ingresar</ion-button>
-    <!-- <ion-button color="primary" ion-button block (click)="MostrarDatos(nom.value, ape.value)">Mostrar Datos</ion-button> -->    
+  
+  <ion-card id="NongModel" class="ion-text-center" color="dark">
+    <ion-card-header>
+      <ion-card-title>Ingrese sus datos</ion-card-title>      
+    </ion-card-header>
+    <form [formGroup]="formRegistro">
+
+      <ion-input label-placement="floating" mode="md" fill="outline" label="Email" type="email" placeholder="Ingrese su email" formControlName="email" ></ion-input>
+      <ion-text *ngIf="formRegistro.controls['email'].errors?.['required'] && formRegistro.controls['email'].touched" color="danger">Debe ingresar un email</ion-text>
+      
+      <hr>
+
+      <ion-input label-placement="floating" mode="md" fill="outline" label="Contraseña" type="password" placeholder="Ingrese la contraseña" formControlName="pass"></ion-input>
+
+      <ion-text *ngIf="formRegistro.controls['pass'].errors?.['required'] && formRegistro.controls['pass'].touched" color="danger">Debe ingresar una contraseña</ion-text>
+      <ion-text *ngIf="formRegistro.controls['pass'].errors?.['minlength']" color="danger">Debe tener 6 caracteres mínimo</ion-text>
+      
+      <hr>
+      
+      <ion-button shape="round" [disabled]="formRegistro.invalid" class="ion-text-center" (click)="login()">Ingresar</ion-button>
+      <ion-button shape="round" [disabled]="formRegistro.invalid" class="ion-text-center" (click)="registerNewUser()" color="tertiary">Registrarse</ion-button>
+      
+
+    </form>
 
   </ion-card>
   
